@@ -92,6 +92,8 @@ export class QuillEditorComponent implements AfterViewInit, ControlValueAccessor
   @Output() onEditorCreated: EventEmitter<any> = new EventEmitter();
   @Output() onContentChanged: EventEmitter<any> = new EventEmitter();
   @Output() onSelectionChanged: EventEmitter<any> = new EventEmitter();
+  @Output() rawQuillEditor = this.quillEditor;
+  @Output() rootElement = this.elementRef.nativeElement;
 
   onModelChange: Function = () => {};
   onModelTouched: Function = () => {};
@@ -135,6 +137,8 @@ export class QuillEditorComponent implements AfterViewInit, ControlValueAccessor
       strict: this.strict,
       scrollingContainer: this.scrollingContainer
     });
+
+    this.rawQuillEditor = this.quillEditor;
 
     if (this.content) {
       const contents = this.quillEditor.clipboard.convert(this.content);
